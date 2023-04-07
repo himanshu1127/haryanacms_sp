@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SP CMS</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div>
+      <div class="mainDiv">
+        <div class="innerDiv">
+          <section class="section1">
+            <header class="header">
+              <h1 class="LoginText">Login to SP</h1>
+              <h1 class="compText">Complaint Management System</h1>
+            </header>
+            <form class="loginForm" onsubmit="login(event)">
+              <label for="">Username <span class="required">*</span></label>
+              <input
+                type="email"
+                id="username"
+                class=""
+                placeholder="Username"
+                required
+              />
+
+              <label for="password"
+                >Password <span class="required">*</span></label
+              >
+              <input
+                type="password"
+                id="password"
+                class=""
+                placeholder="Password"
+                required
+              />
+
+              <!-- <div>
+                <div>
+                  <input type="checkbox" class="checkbox" id="remember" />
+                  <label for="remember" class=""> Remember me </label>
+                </div>
+                <a href="" class="forgotLink"> Forgot Password? </a>
+              </div> -->
+              <input type="submit" class="loginButton" value="Login" />
+            </form>
+            <!-- <button class="loginButton" onClick="login()">Login</button> -->
+          </section>
+          <section>
+            <img src="/login-image.png" class="image" alt="Haryana CMS" />
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  const url = `https://hrycms.onrender.com`;
+  let loading = false;
+
+  let currentUser = async (userid) => {
+    // const userID = JSON.parse(localStorage.getItem("userID"));
+    // console.log(userID)
+    // console.log(userid);
+    const response = await fetch(`${url}/user/user/${userid}`);
+    const data = await response.json();
+    if (data.designation === "SP") {
+      alert("Login Successful!");
+      window.location.href = "./Dashboard.html";
+      loading = false;
+      appendButtonText();
+    }else{
+      alert("Not an SP")
+    }
+    // console.log(data);
+  };
+  const get = (id) => {
+    return document.getElementById(id);
+  };
+  const login = async (event) => {
+    event.preventDefault();
+    let obj = {
+      email: get("username").value,
+      password: get("password").value,
+    };
+    obj = JSON.stringify(obj);
+    try {
+      loading = true;
+      console.log(loading);
+      appendButtonText();
+      let res = await fetch(`${url}/user/login`, {
+        method: "POST",
+        body: obj,
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      res = await res.json();
+      if (res.status === 200) {
+        localStorage.setItem("userID", JSON.stringify(res.userId));
+        await currentUser(res.userId);
+        // console.log(currentUser);
+
+        // console.log(loading);
+
+        // alert("Login Successful!");
+        // window.location.href = "./Dashboard.html";
+      } else {
+        loading = false;
+        appendButtonText();
+        alert("Login Failed");
+      }
+      // console.log(res);
+      loading = false;
+      appendButtonText();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  let appendButtonText = () => {
+    let button = document.querySelector(".loginButton");
+    button.innerHTML = null;
+    if (loading) {
+      button.value = "Loading...";
+    } else {
+      button.value = "Login";
+    }
+  };
+</script>
+<script type="module"></script>
