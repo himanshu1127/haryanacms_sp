@@ -100,6 +100,106 @@
       .activeviewComp {
         display: block;
       }
+      .commentDiv {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        /* border: 1px solid red; */
+        /* height: fit-content; */
+        min-height: 50%;
+        max-height: 80%;
+        width: 80%;
+        font-size: 16px;
+        margin: auto;
+        z-index: 100;
+        background: #e2e8f0;
+        overflow-y: scroll;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 5px;
+        padding: 0 2rem 0 2rem;
+      }
+      .activecommentDiv {
+        display: block;
+      }
+      .commentMainDiv {
+        display: flex;
+        justify-content: space-between;
+        height: 80%;
+        /* border: 1px solid cyan; */
+      }
+      .commentMainDiv > div {
+        width: 50%;
+        height: 100%;
+      }
+      #commentForm {
+        /* border: 1px solid red; */
+        height: 100%;
+        padding: 2rem;
+      }
+      .innerTextDiv {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+      }
+      #commentText {
+        width: 100%;
+        min-height: 200px;
+        height: fit-content;
+        max-height: 400px;
+        border-radius: 5px;
+        padding: 1rem;
+      }
+      .showComments {
+        /* border: 1px solid red; */
+        padding: 2rem;
+        overflow-y: auto;
+      }
+
+      .closeIconComment {
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        cursor: pointer;
+      }
+
+      .closeIconComment div {
+        border: 1px solid black;
+        width: 20px;
+        font-weight: 900;
+      }
+      .commentDivView {
+        /* border: 1px solid black; */
+        margin: 15px 0 15px 0;
+        background: whitesmoke;
+        padding: 1rem;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .commentTextView {
+        background: rgb(242, 242, 242);
+        padding: 0.5rem 0.25rem 0.5rem 0.25rem;
+        font-size: 14px;
+      }
+      .buttonAddComment {
+        height: 70%;
+        /* width: 100px; */
+        /* margin-top: 1.25rem; Equivalent to my-5 with default line height */
+        /* margin-bottom: 1.25rem; Equivalent to my-5 with default line height */
+        padding: 0.75rem; /* Equivalent to p-3 with default line height */
+        border: 2px solid #34d399; /* Equivalent to border-2 border-green-400 */
+        transition-duration: 0.3s; /* Default transition duration */
+        transition-property: all; /* Animate all properties on hover */
+        border-radius: 0.375rem; /* Equivalent to rounded */
+        font-weight: bold; /* Equivalent to font-bold */
+        color: #34d399;
+      }
     </style>
   </head>
   <body>
@@ -114,8 +214,8 @@
             <i class="fa-solid fa-bars"></i>
           </div>
           <div class="inputHeader">
-            <input type="text" placeholder="search" />
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="search" id="searchBox" />
+            <i class="fa-solid fa-magnifying-glass" onclick="search()"></i>
           </div>
         </div>
         <div class="userDetails">
@@ -143,54 +243,59 @@
           <ul>
             <li class="liText">
               <a class="aTag" href="./allComplaints.html">
-                <i class="fa-solid fa-book-open"></i> All Complaints</a
-              >
+                <i class="fa-solid fa-book-open"></i> All Complaints
+                <span id="allcomp"></span
+              ></a>
             </li>
             <li class="liText">
               <a class="aTag" href="./todayComplain.html"
-                ><i class="fa-solid fa-calendar-day"></i> Today Complaints</a
-              >
+                ><i class="fa-solid fa-calendar-day"></i> Today Complaints
+                <span id="todaycomp"></span
+              ></a>
             </li>
             <li class="liText">
               <a class="aTag" href="./highPriority.html"
-                ><i class="fa-solid fa-fire"></i>High Priority</a
-              >
+                ><i class="fa-solid fa-fire"></i>High Priority
+                <span id="prioritycomp"></span
+              ></a>
             </li>
             <li class="liText">
               <a class="aTag" href="./pending.html">
-                <i class="fa-sharp fa-regular fa-clock"></i>
-                PendingComplaints</a
-              >
+                <i class="fa-sharp fa-regular fa-clock"></i> Pending Complaints
+                <span id="pendingcomp"></span
+              ></a>
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-circle-check"></i>Closed Complaints</a
-              >
+              <a class="aTag" href="./Disposed.html"
+                ><i class="fa-solid fa-circle-check"></i>Disposed Complaints
+                <span id="disposedComp"></span
+              ></a>
             </li>
             <li class="liText">
               <a class="aTag" href="./Visitor.html"
-                ><i class="fa-solid fa-eye"></i>View Visitor Complain</a
-              >
+                ><i class="fa-solid fa-eye"></i>View Visitor Complain
+                <span id="visitorcomp"></span
+              ></a>
             </li>
           </ul>
           <p>Manage Officers</p>
           <ul>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#">
                 <i class="fa-solid fa-user"></i> View SHO
               </a>
-            </li>
+            </li> -->
             <li class="liText">
               <a class="aTag" href="./SHOReport.html"
                 ><i class="fa-solid fa-square-poll-horizontal"></i>SHO
                 Reports</a
               >
             </li>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#"
                 ><i class="fa-regular fa-paper-plane"></i>Send Notes</a
               >
-            </li>
+            </li> -->
             <!-- <li class="liText">
                   <a class="aTag" href="#">Add/View/Update SP</a>
                 </li>
@@ -252,7 +357,7 @@
                 >
                   <option value="">Select Station</option>
 
-                  <!-- <option value="closed">Gurugram</option> -->
+                  <!-- <option value="DISPOSED">Gurugram</option> -->
                 </select>
               </div>
               <div class="dateFilterDiv">
@@ -269,7 +374,7 @@
                 <p style="color: blue">224</p>
               </div> -->
               <!-- <div style="display: flex">
-                  <span>Closed Complaints : &nbsp; </span>
+                  <span>DISPOSED Complaints : &nbsp; </span>
                   <p style="color: blue">224</p>
                 </div> -->
               <!-- <div style="display: flex">
@@ -320,7 +425,7 @@
                   type="text"
                   name=""
                   id="complainantNumber"
-                  readonly
+                  disabled
                   placeholder="Complaint Number"
                   class="complaintsInput"
                 />
@@ -423,9 +528,22 @@
                   type="text"
                   name=""
                   id="cityInputUpdate"
-                  placeholder="Complaint Number"
+                  placeholder="City"
                   class="complaintsInput"
                 />
+              </div>
+            </div>
+            <div class="">
+              <label class="complaintsFormLabel">District :</label>
+              <div class="complaintContnetDivLeftTop">
+                <select
+                  name=""
+                  id="districtUpdate"
+                  class="complaintsInput"
+                  disabled
+                >
+                  <!-- <option value="">Select District</option> -->
+                </select>
               </div>
             </div>
             <div class="">
@@ -435,10 +553,10 @@
                   type="text"
                   name=""
                   id="stateInputUpdate"
-                  placeholder="Complaint Name"
+                  placeholder="State"
                   class="complaintsInput"
                   value="HARYANA"
-                  readonly
+                  disabled
                 />
               </div>
             </div>
@@ -448,16 +566,18 @@
             <div class="">
               <label class="complaintsFormLabel">Range :</label>
               <div class="complaintContnetDivLeftTop">
-                <select name="" id="rangeInputUpdate" class="complaintsInput">
-                  <!-- <option value="HISAR">HISAR</option>
-                  <option value="AMBALA">AMBALA</option> -->
-                </select>
+                <select
+                  name=""
+                  id="rangeInputUpdate"
+                  class="complaintsInput"
+                  disabled
+                ></select>
               </div>
             </div>
             <div class="">
-              <label class="complaintsFormLabel">Station Name :</label>
+              <label class="complaintsFormLabel">Mark to Station :</label>
               <div class="complaintContnetDivLeftTop">
-                <select name="" id="IOUpdate" class="complaintsInput">
+                <select name="" id="StationName" class="complaintsInput">
                   <!-- <option value="SP 1">SP 1</option>
                   <option value="SP 2">SP 2</option> -->
                 </select>
@@ -474,7 +594,7 @@
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="IN-PROCESS">IN-PROCESS</option>
-                  <option value="CLOSED">CLOSED</option>
+                  <option value="DISPOSED">DISPOSED</option>
                   <option value="OVERDUE">OVERDUE</option>
                   <option value="REJECTED">REJECTED</option>
                 </select>
@@ -484,14 +604,14 @@
           <div class="complaintsText">
             <div class="">
               <label class="complaintsFormLabel"
-                >Complaint SPrt Description</label
+                >Complaint Short Description</label
               >
               <div class="complaintsTextArea">
                 <textarea
                   type="text"
                   name=""
                   id="SPrtDescriptionUpdate"
-                  placeholder="Complaint SPrt Description"
+                  placeholder="Complaint Short Description"
                   class="p-2 mr-2 border-2 rounded w-full h-44"
                 ></textarea>
               </div>
@@ -499,18 +619,18 @@
           </div>
           <div class="complaintsText bottomDiv">
             <div class="m-5 flex-1">
-              <label class="complaintsFormLabel">Date of Submission</label>
+              <label class="complaintsFormLabel">Update Deadline</label>
               <div class="complaintContnetDivLeftTop">
                 <input
                   type="date"
                   name=""
-                  id="dateOfSubUpdate"
+                  id="deadlineUpdate"
                   placeholder=""
                   class="complaintsInput"
                 />
               </div>
             </div>
-            <div class="m-5 flex-1">
+            <!-- <div class="m-5 flex-1">
               <label class="complaintsFormLabel">Target deadline</label>
               <div class="complaintContnetDivLeftTop">
                 <input
@@ -521,7 +641,7 @@
                   class="complaintsInput"
                 />
               </div>
-            </div>
+            </div> -->
             <div class="highPriorityCheckDiv">
               <div class="complaintContnetDivLeftTop">
                 <input
@@ -543,65 +663,54 @@
                   name=""
                   id="complainCategoryUpdate"
                   class="complaintsInput"
-                >
-                  <option value="CAW">CAW Complaints</option>
-                </select>
+                ></select>
               </div>
             </div>
             <div>
-              <label class="complaintsFormLabel" for="sections"
-                >Sections :</label
-              >
-              <div class="sectionsDisplay"></div>
+              <label class="complaintsFormLabel" for="sections">ACT :</label>
+              <!-- <div class="sectionsDisplay"> -->
+              <!-- <textarea
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                  placeholder="Write ACT"
+                ></textarea> -->
+              <select name="" id="actUpdate" class="complaintsInput"></select>
             </div>
             <div>
               <label class="complaintsFormLabel">Sections :</label>
               <div class="complaintContnetDivLeftTop">
-                <select name="" id="sectionsUpdate" class="complaintsInput">
-                  <option value="301">301</option>
-                  <option value="275">275</option>
-                </select>
+                <!-- <select name="" id="sections" class="complaintsInput"> -->
+                <!-- <option value="301">301</option>
+                  <option value="275">275</option> -->
+                <textarea name="" id="" cols="30" rows="5"></textarea>
               </div>
             </div>
           </div>
-          <div class="filesDiv">
+          <!-- <div class="filesDiv">
             <p>Upload Files</p>
-            <div class="specialDiv">
-              <div class="specialDivInner">
-                <label class="complaintsFormLabel">From Internet</label>
-                <input type="radio" />
-                <div class="complaintContnetDivLeftTop">
-                  <input
-                    type="file"
-                    name=""
-                    id="emailInput"
-                    placeholder="Special Remark"
-                    class="complaintsInput"
-                  />
-                </div>
-              </div>
-              <div class="specialDivInner">
-                <label class="complaintsFormLabel" for="computer"
-                  >From My Computer</label
-                >
-                <input type="radio" name="computer" id="" />
-                <div class="complaintContnetDivLeftTop">
-                  <input
-                    type="file"
-                    name=""
-                    id="emailInput"
-                    placeholder="Write Complaint Here"
-                    class="complaintsInput"
-                  />
-                </div>
+            <div class="specialDivInner">
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="file"
+                  name=""
+                  id="inputFiles"
+                  placeholder="Special Remark"
+                  class="complaintsInput"
+                  multiple
+                />
+                <div id="inputFilesText"></div>
               </div>
             </div>
-          </div>
+            
+          </div> -->
 
           <div class="addButtonDiv">
             <button
-              onclick="updateComplain()"
+              id="updateButton"
               type="submit"
+              onclick="updateComplain()"
               class="addButton my-5 p-3 border-2 border-green-400 hover:border-green-600 hover:bg-green-600 transition-all rounded font-bold hover:text-white"
             >
               Update
@@ -630,7 +739,7 @@
                   type="text"
                   name=""
                   id="complainantNumberView"
-                  readonly
+                  disabled
                   placeholder="Complaint Number"
                   class="complaintsInput"
                 />
@@ -645,7 +754,7 @@
                   id="complainantNameView"
                   placeholder="Complaint Name"
                   class="complaintsInput"
-                  readonly
+                  disabled
                 />
               </div>
             </div>
@@ -658,7 +767,7 @@
                   id="fatherNameView"
                   placeholder="Father's Name"
                   class="complaintsInput"
-                  readonly
+                  disabled
                 />
               </div>
             </div>
@@ -671,7 +780,7 @@
                   id="complainantEmailView"
                   placeholder="Email"
                   class="complaintsInput"
-                  readonly
+                  disabled
                 />
               </div>
             </div>
@@ -686,7 +795,7 @@
                   id="addressView"
                   placeholder="Address Line 1"
                   class="complaintsInput"
-                  readonly
+                  disabled
                 />
               </div>
             </div>
@@ -699,7 +808,7 @@
                   id="mobileNoView"
                   placeholder="Phone Number"
                   class="complaintsInput"
-                  readonly
+                  disabled
                 />
               </div>
             </div>
@@ -714,7 +823,7 @@
                   id="addressLine1View"
                   placeholder="Address Line 2"
                   class="complaintsInput"
-                  readonly
+                  disabled
                 />
               </div>
             </div>
@@ -727,7 +836,7 @@
                   id="alternateNumberView"
                   placeholder="Alternate Number"
                   class="complaintsInput"
-                  readonly
+                  disabled
                 />
               </div>
             </div>
@@ -740,10 +849,23 @@
                   type="text"
                   name=""
                   id="cityInputView"
-                  placeholder="Complaint Number"
+                  placeholder="City"
                   class="complaintsInput"
-                  readonly
+                  disabled
                 />
+              </div>
+            </div>
+            <div class="">
+              <label class="complaintsFormLabel">District :</label>
+              <div class="complaintContnetDivLeftTop">
+                <select
+                  name=""
+                  id="districtView"
+                  class="complaintsInput"
+                  disabled
+                >
+                  <option value="">Select District</option>
+                </select>
               </div>
             </div>
             <div class="">
@@ -756,7 +878,7 @@
                   placeholder="Complaint Name"
                   class="complaintsInput"
                   value="HARYANA"
-                  readonly
+                  disabled
                 />
               </div>
             </div>
@@ -777,15 +899,15 @@
               </div>
             </div>
             <div class="">
-              <label class="complaintsFormLabel">Station Name :</label>
+              <label class="complaintsFormLabel">Mark to Station :</label>
               <div class="complaintContnetDivLeftTop">
                 <select
                   name=""
-                  id="IONameView1"
+                  id="StationNameView"
                   class="complaintsInput"
                   disabled
                 >
-                  <!-- <option value="">Select IO</option> -->
+                  <option value="">Select Station</option>
                 </select>
               </div>
             </div>
@@ -801,7 +923,7 @@
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="IN-PROCESS">IN-PROCESS</option>
-                  <option value="CLOSED">CLOSED</option>
+                  <option value="DISPOSED">DISPOSED</option>
                   <option value="OVERDUE">OVERDUE</option>
                   <option value="REJECTED">REJECTED</option>
                 </select>
@@ -818,9 +940,9 @@
                   type="text"
                   name=""
                   id="SPrtDescriptionView"
-                  readonly
                   placeholder="Complaint SPrt Description"
                   class="p-2 mr-2 border-2 rounded w-full h-44"
+                  disabled
                 ></textarea>
               </div>
             </div>
@@ -832,14 +954,14 @@
                 <input
                   type="date"
                   name=""
-                  id="dateOfSubView"
+                  id="deadlineView"
                   placeholder=""
                   class="complaintsInput"
-                  readonly
+                  disabled
                 />
               </div>
             </div>
-            <div class="m-5 flex-1">
+            <!-- <div class="m-5 flex-1">
               <label class="complaintsFormLabel">Target deadline</label>
               <div class="complaintContnetDivLeftTop">
                 <input
@@ -851,7 +973,7 @@
                   readonly
                 />
               </div>
-            </div>
+            </div> -->
             <div class="highPriorityCheckDiv">
               <div class="complaintContnetDivLeftTop">
                 <input
@@ -875,29 +997,33 @@
                   id="complainCategoryView"
                   class="complaintsInput"
                   disabled
-                >
-                  <option value="CAW">CAW Complaints</option>
-                </select>
+                ></select>
               </div>
             </div>
             <div>
-              <label class="complaintsFormLabel" for="sections"
-                >Sections :</label
-              >
-              <div class="sectionsDisplay"></div>
+              <label class="complaintsFormLabel" for="sections">ACT :</label>
+              <!-- <div class="sectionsDisplay"> -->
+              <!-- <textarea
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                  placeholder="Write ACT"
+                ></textarea> -->
+              <select
+                name=""
+                id="actView"
+                class="complaintsInput"
+                disabled
+              ></select>
             </div>
             <div>
               <label class="complaintsFormLabel">Sections :</label>
               <div class="complaintContnetDivLeftTop">
-                <select
-                  name=""
-                  id="sectionsView"
-                  class="complaintsInput"
-                  disabled
-                >
-                  <option value="301">301</option>
-                  <option value="275">275</option>
-                </select>
+                <!-- <select name="" id="sections" class="complaintsInput"> -->
+                <!-- <option value="301">301</option>
+                  <option value="275">275</option> -->
+                <textarea name="" id="" cols="30" rows="5" disabled></textarea>
               </div>
             </div>
           </div>
@@ -949,6 +1075,37 @@
         </div>
       </div>
     </div>
+    <div class="commentDiv">
+      <div>
+        <div class="upperDivAddComp">
+          <h3 class="h3AddComp">Add Comments</h3>
+          <div class="closeIconComment">
+            <div class="line1"></div>
+            <div class="line2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="commentMainDiv">
+        <div>
+          <form id="commentForm" onsubmit="addComm(event)">
+            <div class="innerTextDiv">
+              <textarea
+                name=""
+                id="commentText"
+                placeholder="Write Comment"
+              ></textarea>
+              <input
+                type="submit"
+                value="Post Comment"
+                id="addComment"
+                class="buttonAddComment"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="showComments"></div>
+      </div>
+    </div>
   </body>
 </html>
 
@@ -956,36 +1113,136 @@
 <script src="./commonFunctions.js"></script>
 <script type="module">
   import {
-    getComplain,
-    dataArr,
-    getUser,
-    getRange,
-    getStation,
-  } from "./Components/GetData.js";
+    a,
+    complain,
+    currentUser,
+    visitorComplain,
+    IO,
+    Ranges,
+    category,
+    currentRange,
+    currentDistrict,
+    currentPoliceStation,
+    districts,
+    act,
+    SP,
+    DSP,
+    SHO,
+    policeStations,
+    today,
+    priority,
+    pending,
+    disposed,
+  } from "./Components/getData.js";
   let userName = document.getElementById("userDetail");
+  let allcomp = document.getElementById("allcomp");
+  let pendingComp = document.getElementById("pendingcomp");
+  let todayComp = document.getElementById("todaycomp");
+  let priorityComp = document.getElementById("prioritycomp");
+  let disposedComp = document.getElementById("disposedComp");
+  let visitorcomp = document.getElementById("visitorcomp");
   //   async function a() {
   //
   //     console.log(result);
   //
   //   }
 
-  const a = async () => {
-    const result = await getComplain();
-    const user = await getUser();
-    userName.innerText = `${user.fname} ${user.lname}, ${user.designation}, ${user.districtofc}`;
-    currentUser = user;
-    const resRange = await getRange();
-    let resIO = await getStation();
-    console.log(result);
-    resIO = resIO.filter((el) => {
-      return user.districtofc === el.policeStationDistrict;
+  const app = async () => {
+    await a();
+    userName.innerText = `${currentUser.fname} ${currentUser.lname}, ${currentUser.designation}, ${currentUser.districtofc}`;
+    allcomp.innerText = `(${complain.length})`;
+    pendingComp.innerText = `(${pending.length})`;
+    todayComp.innerText = `(${today.length})`;
+    priorityComp.innerText = `(${priority.length})`;
+    disposedComp.innerText = `(${disposed.length})`;
+    visitorcomp.innerText = `(${visitorComplain.length})`;
+    // const result = await getComplain();
+    // const user = await getUser();
+    // currentUser = user;
+    // const resRange = await getRange();
+    // let resIO = await getStation();
+    // console.log(result);
+    // resIO = resIO.filter((el) => {
+    //   return user.districtofc === el.policeStationDistrict;
+    // });
+    // // console.log(resIO, "afsasf")
+    user = currentUser
+    highPriority(complain);
+    appendrangeInputUpdate(Ranges);
+    appendrangeInputView1(Ranges);
+    appendStationName(policeStations);
+    appendStationNameView(policeStations);
+    appendIo(policeStations);
+    appendcomplainCategoryUpdate(category);
+    appendcomplainCategoryView(category);
+    appendAct(act);
+    appendActView(act);
+    appendDistrictUpdate(districts, currentDistrict);
+    appendDistrictView(districts, currentDistrict);
+  };
+  let appendcomplainCategoryUpdate = (data) => {
+    let complainCategoryUpdate = document.getElementById(
+      "complainCategoryUpdate"
+    );
+    console.log(data);
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.categoryName;
+      option.value = el.categoryName;
+      complainCategoryUpdate.append(option);
     });
-    // console.log(resIO, "afsasf")
-    highPriority();
-    appendrangeInputUpdate(resRange);
-    appendrangeInputView1(resRange);
-    appendIOUpdate(resIO);
-    appendIONameView1(resIO);
+  };
+  let appendAct = (data) => {
+    let actUpdate = document.getElementById("actUpdate");
+    console.log(data);
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.actName;
+      option.value = el.actName;
+      actUpdate.append(option);
+    });
+  };
+  const appendDistrictUpdate = (data, a) => {
+    let container = document.getElementById("districtUpdate");
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.rangeDistrictName;
+      option.value = el.rangeDistrictName;
+      container.append(option);
+    });
+    container.value = a;
+  };
+  let appendcomplainCategoryView = (data) => {
+    let complainCategoryUpdate = document.getElementById(
+      "complainCategoryView"
+    );
+    console.log(data);
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.categoryName;
+      option.value = el.categoryName;
+      complainCategoryUpdate.append(option);
+    });
+  };
+  let appendActView = (data) => {
+    let actView = document.getElementById("actView");
+    console.log(data);
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.actName;
+      option.value = el.actName;
+      actView.append(option);
+    });
+  };
+  const appendDistrictView = (data, a) => {
+    let container = document.getElementById("districtView");
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.rangeDistrictName;
+      option.value = el.rangeDistrictName;
+      container.append(option);
+    });
+    container.value = a;
   };
   const appendrangeInputUpdate = (data) => {
     let rangeInputUpdate = document.getElementById("rangeInputUpdate");
@@ -997,16 +1254,16 @@
       rangeInputUpdate.append(option);
     });
   };
-  const appendIOUpdate = (data) => {
-    let IOUpdate = document.getElementById("IOUpdate");
+  const appendStationName = (data) => {
+    let StationName = document.getElementById("StationName");
     // let IONameView1 = document.getElementById("IONameView1");
-    IOUpdate.innerHTML = null;
+    StationName.innerHTML = null;
     console.log(data, "dataa");
     data.map((el) => {
       let option = document.createElement("option");
       option.innerText = el.policeStationName;
       option.value = el.policeStationName;
-      IOUpdate.append(option);
+      StationName.append(option);
       // IONameView1.append(option)
     });
   };
@@ -1022,18 +1279,31 @@
       rangeInputView1.append(option);
     });
   };
-  const appendIONameView1 = (data) => {
-    let IONameView1 = document.getElementById("IONameView1");
+  const appendStationNameView = (data) => {
+    let StationNameView = document.getElementById("StationNameView");
     data.map((el) => {
       let option = document.createElement("option");
-      option.innerText = `${el.fname} ${el.lname}`;
-      option.value = el.email;
-      IONameView1.append(option);
+      option.innerText = `${el.policeStationName}`;
+      option.value = el.policeStationName;
+      StationNameView.append(option);
     });
   };
-  const highPriority = () => {
-    console.log(dataArr);
-    let newDataArr = dataArr.filter((el) => {
+  const appendIo = (data) => {
+    let container = document.getElementById("ioselect");
+    // let updateCont = document.getElementById("");
+
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = `${el.policeStationName}`;
+      option.value = el.policeStationName;
+      // console.log(option)
+      container.append(option);
+      // updateCont.append(option)
+    });
+  };
+  const highPriority = (data) => {
+    console.log(data);
+    let newDataArr = data.filter((el) => {
       console.log(currentUser);
       return el.rangeDistrictName === currentUser.districtofc;
     });
@@ -1042,8 +1312,8 @@
       return el.highPriority === true;
     });
     console.log(newData);
-    dataArr1 = newData;
+    todayComp1 = newData;
     append(newData);
   };
-  a();
+  app();
 </script>

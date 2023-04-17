@@ -4,10 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Haryana Complaint Management System</title>
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/ffe2b9fea9.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="./Dashboard.css" />
     <link rel="stylesheet" href="./table.css" />
-    <link rel="stylesheet" href="./addComplaints.css" />
+    <link rel="stylesheet" href="./allComplaints.css" />
+    <link rel="stylesheet" href="addComplaints.css" />
     <style>
       .upperDivAddComp {
         text-align: center;
@@ -196,11 +201,6 @@
         color: #34d399;
       }
     </style>
-    <script
-      src="https://kit.fontawesome.com/ffe2b9fea9.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
   </head>
   <body>
     <header>
@@ -282,38 +282,38 @@
           <ul>
             <!-- <li class="liText">
               <a class="aTag" href="#">
-                <i class="fa-solid fa-user"></i> View SHO
+                <i class="fa-solid fa-user"></i> View IO
               </a>
             </li> -->
             <li class="liText">
-              <a class="aTag" href="./SHOReport.html"
-                ><i class="fa-solid fa-square-poll-horizontal"></i>SHO
-                Reports</a
+              <a class="aTag" href="./IoReport.html"
+                ><i class="fa-solid fa-square-poll-horizontal"></i>IO Reports</a
               >
             </li>
             <!-- <li class="liText">
               <a class="aTag" href="#"
                 ><i class="fa-regular fa-paper-plane"></i>Send Notes</a
               >
-            </li> -->
+            </li> 
+            -->
             <!-- <li class="liText">
-              <a class="aTag" href="#">Add/View/Update SP</a>
-            </li>
-            <li class="liText">
-              <a class="aTag" href="#">Add/View/Update IO</a>
-            </li> -->
+                  <a class="aTag" href="#">Add/View/Update SHO</a>
+                </li>
+                <li class="liText">
+                  <a class="aTag" href="#">Add/View/Update IO</a>
+                </li> -->
           </ul>
           <!-- <p>Manage Category</p>
-          <ul>
-            <li class="liText">
-              <a class="aTag" href="#"
-                >Add/View/Update Category</a
-              >
-            </li>
-            <li class="liText">
-              <a class="aTag" href="#">Add/View/Update ACT</a>
-            </li>
-          </ul> -->
+              <ul>
+                <li class="liText">
+                  <a class="aTag" href="#"
+                    >Add/View/Update Category</a
+                  >
+                </li>
+                <li class="liText">
+                  <a class="aTag" href="#">Add/View/Update ACT</a>
+                </li>
+              </ul> -->
 
           <div id="buttonDiv">
             <button id="logoutButton" onclick="logout()">
@@ -321,204 +321,89 @@
             </button>
           </div>
           <!-- <p>Manage Dept.</p>
-              <p>Manage Category</p>
-              <p>Manage Users (SP)</p>
-              <p>Manage Data</p> -->
+                  <p>Manage Category</p>
+                  <p>Manage Users (SHO)</p>
+                  <p>Manage Data</p> -->
         </div>
       </div>
       <div class="rightContent">
-        <div class="rightTop">
-          <!-- <div class="rightTopLeft1">
-                <h2>Dashboard</h2>
-                <button>Add Complaint</button>
-                <button>hi</button>
-            </div> -->
-          <div class="rightTopLeft">
-            <div>
-              <h2>Dashboard</h2>
-            </div>
-            <div>
-              <button class="buttonTopRight" onclick="toaddComplaints()">
-                Add Complaint
-              </button>
-            </div>
-          </div>
-          <div class="rightTopRight">
-            <div class="a">
-              <!-- <button class="buttonTopLeft">View Report</button> -->
-              <button class="buttonTopLeft" onclick="goToIO()">
-                SHO Details
-              </button>
-            </div>
-            <div class="b">Home / <span>Dashboard</span></div>
-          </div>
-        </div>
-        <!-- <div class="stats">
-          <div class="totalComplaintsStats">
-            <div class="totalComplaintsStatsLeft">
-              <p>Today Complaints</p>
-              <h4>0</h4>
-            </div>
-            <div class="totalComplaintsStatsRight">
-              <img src="./ScreenSPt 2023-03-13 at 9.38.39 PM.png" alt="" />
-            </div>
-          </div>
-          <div class="totalComplaintsStats">
-            <div class="totalComplaintsStatsLeft">
-              <p>Total Pending</p>
-              <h4>0</h4>
-            </div>
-            <div class="totalComplaintsStatsRight">
-              <img src="./ScreenSPt 2023-03-13 at 9.39.04 PM.png" alt="" />
-            </div>
-          </div>
-          <div class="totalComplaintsStats">
-            <div class="totalComplaintsStatsLeft">
-              <p>Total</p>
-              <h4>0</h4>
-            </div>
-            <div class="totalComplaintsStatsRight">
-              <img src="./ScreenSPt 2023-03-13 at 9.38.39 PM.png" alt="" />
-            </div>
-          </div>
-          <div class="totalComplaintsStats">
-            <div class="totalComplaintsStatsLeft">
-              <p>Officers Complaint</p>
-              <h4>0</h4>
-            </div>
-            <div class="totalComplaintsStatsRight">
-              <img src="./ScreenSPt 2023-03-13 at 9.39.04 PM.png" alt="" />
-            </div>
-          </div>
-        </div> -->
+        <div id="table" style="width: 100%; margin: auto; height: 700px">
+          <div
+            style="
+              height: 80px;
+              display: flex;
+              /* border: 1px solid red; */
+              width: 100%;
+              padding: 10px;
+              box-sizing: border-box;
+              font-size: 12px;
+            "
+          >
+            <div
+              style="
+                align-self: center;
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+              "
+            >
+              <!-- <div>District Wise >> <span>Pending Complaints</span></div> -->
+              <div>
+                <select
+                  name=""
+                  onchange="changeComplains()"
+                  id="ioselect"
+                  style="border: none; outline: none"
+                >
+                  <option value="">Select IO</option>
 
-        <div class="chart">
-          <table border="1" class="table">
-            <thead class="tableHead">
-              <tr class="trHead">
-                <th class="thHead thHead1">Tracking Id</th>
-                <!-- <th class="thHead thHead2">Category</th> -->
-                <th class="thHead thHead3">Complaint</th>
-                <th class="thHead thHead9">Complaint Type</th>
-                <th class="thHead thHead4">Issued Date</th>
-                <th class="thHead thHead5">Deadline</th>
-                <th class="thHead thHead6">Area</th>
-                <!-- <th class="thHead thHead7">Status</th> -->
-                <th class="thHead thHead8">Action</th>
-              </tr>
-            </thead>
-            <tbody class="tableBody"></tbody>
-          </table>
-        </div>
-        <div class="messages">
-          <div class="officerIngormation" id="officerIngormation">
-            <!-- <div class="officerInformationSingleDiv">
-              <h4>Officer Information</h4>
-              <div class="officerInformationText">
-                <p>By Mahesh Singh, IO, Sadar, Karnal</p>
-                <div class="officerInformationIcons">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
+                  <!-- <option value="DISPOSED">Gurugram</option> -->
+                </select>
               </div>
-            </div>
-            <div class="officerInformationSingleDiv">
-              <h4>Officer Information</h4>
-              <div class="officerInformationText">
-                <p>By Mahesh Singh, IO, Sadar, Karnal</p>
-                <div class="officerInformationIcons">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
+              <div class="dateFilterDiv">
+                <div>From: <input type="date" name="" id="initialDate" /></div>
+                <div>To: <input type="date" name="" id="finalDate" /></div>
+                <button onclick="searchData()">Submit</button>
               </div>
-            </div>
-            <div class="officerInformationSingleDiv">
-              <h4>Officer Information</h4>
-              <div class="officerInformationText">
-                <p>By Mahesh Singh, IO, Sadar, Karnal</p>
-                <div class="officerInformationIcons">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
+              <!-- <div style="display: flex">
+                <span>Today Complaints : &nbsp; </span>
+                <p style="color: blue">224</p>
               </div>
-            </div>
-            <div class="officerInformationSingleDiv">
-              <h4>Officer Information</h4>
-              <div class="officerInformationText">
-                <p>By Mahesh Singh, IO, Sadar, Karnal</p>
-                <div class="officerInformationIcons">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
-              </div>
-            </div>
-            <div class="officerInformationSingleDiv">
-              <h4>Officer Information</h4>
-              <div class="officerInformationText">
-                <p>By Mahesh Singh, IO, Sadar, Karnal</p>
-                <div class="officerInformationIcons">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
-              </div>
-            </div> -->
-          </div>
-
-          <div class="messageFromADGP">
-            <h4>Message from ADGP</h4>
-            <hr />
-            <div class="messageFromADGPBox">
-              I am a firm believer that without public support, the Police can
-              not be effective. Crusade against criminals, terrorists,
-              anti-social elements, economic offend- ers, smugglers etc. cannot
-              be successful without the active cooperation of the public. I take
-              this opportunity to seek cooperation of all the citizens and reaf-
-              firm our resolve to make Haryana Police an effective and efficient
-              organization dedicated to the service of the people.
+              <div style="display: flex">
+                <span>Pending Complaints : &nbsp; </span>
+                <p style="color: blue">224</p>
+              </div> -->
+              <!-- <div style="display: flex">
+                  <span>Disposed Complaints : &nbsp; </span>
+                  <p style="color: blue">224</p>
+                </div> -->
+              <!-- <div style="display: flex">
+                <span style="color: red"
+                  >High Priority Complaints : &nbsp;
+                </span>
+                <p style="color: blue">224</p>
+              </div> -->
             </div>
           </div>
-
-          <div class="officersData" id="officersData">
-            <!-- <div class="OfficerDataSingleDiv">
-              <div class="officerImage">
-                <img src="./haryana_police_logo.webp" alt="" />
-              </div>
-              <div class="officersDetails">
-                <p>Abhishekh Kumar, IO, Hisar, Nagar</p>
-                <div class="progressSlider">Slider</div>
-              </div>
-            </div>
-            <div class="OfficerDataSingleDiv">
-              <div class="officerImage">
-                <img src="./haryana_police_logo.webp" alt="" />
-              </div>
-              <div class="officersDetails">
-                <p>Abhishekh Kumar, IO, Hisar, Nagar</p>
-                <div class="progressSlider">Slider</div>
-              </div>
-            </div>
-            <div class="OfficerDataSingleDiv">
-              <div class="officerImage">
-                <img src="./haryana_police_logo.webp" alt="" />
-              </div>
-              <div class="officersDetails">
-                <p>Abhishekh Kumar, IO, Hisar, Nagar</p>
-                <div class="progressSlider">Slider</div>
-              </div>
-            </div>
-            <div class="OfficerDataSingleDiv">
-              <div class="officerImage">
-                <img src="./haryana_police_logo.webp" alt="" />
-              </div>
-              <div class="officersDetails">
-                <p>Abhishekh Kumar, IO, Hisar, Nagar</p>
-                <div class="progressSlider">Slider</div>
-              </div>
-            </div> -->
+          <div class="tableDiv">
+            <table border="1" class="table">
+              <thead class="tableHead">
+                <tr class="trHead">
+                  <th class="thHead thHead1">Tracking Id</th>
+                  <th class="thHead thHead3">Complaint</th>
+                  <th class="thHead thHead9">Complaint Type</th>
+                  <th class="thHead thHead4">Issued Date</th>
+                  <th class="thHead thHead5">Deadline</th>
+                  <th class="thHead thHead6">Area</th>
+                  <th class="thHead">Flaging</th>
+                  <th class="thHead thHead8">Action</th>
+                </tr>
+              </thead>
+              <tbody class="tableBody"></tbody>
+            </table>
           </div>
         </div>
       </div>
-      <!-- <MainTable /> -->
     </div>
     <div class="displayUpdateComp">
       <div class="updateComp">
@@ -694,7 +579,7 @@
               <div class="complaintContnetDivLeftTop">
                 <select name="" id="StationName" class="complaintsInput">
                   <!-- <option value="SP 1">SP 1</option>
-                  <option value="SP 2">SP 2</option> -->
+                    <option value="SP 2">SP 2</option> -->
                 </select>
               </div>
             </div>
@@ -746,17 +631,17 @@
               </div>
             </div>
             <!-- <div class="m-5 flex-1">
-              <label class="complaintsFormLabel">Target deadline</label>
-              <div class="complaintContnetDivLeftTop">
-                <input
-                  type="date"
-                  name=""
-                  id="emailInput"
-                  placeholder="="
-                  class="complaintsInput"
-                />
-              </div>
-            </div> -->
+                <label class="complaintsFormLabel">Target deadline</label>
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="date"
+                    name=""
+                    id="emailInput"
+                    placeholder="="
+                    class="complaintsInput"
+                  />
+                </div>
+              </div> -->
             <div class="highPriorityCheckDiv">
               <div class="complaintContnetDivLeftTop">
                 <input
@@ -785,12 +670,12 @@
               <label class="complaintsFormLabel" for="sections">ACT :</label>
               <!-- <div class="sectionsDisplay"> -->
               <!-- <textarea
-                  name=""
-                  id=""
-                  cols="30"
-                  rows="10"
-                  placeholder="Write ACT"
-                ></textarea> -->
+                    name=""
+                    id=""
+                    cols="30"
+                    rows="10"
+                    placeholder="Write ACT"
+                  ></textarea> -->
               <select name="" id="actUpdate" class="complaintsInput"></select>
             </div>
             <div>
@@ -798,33 +683,34 @@
               <div class="complaintContnetDivLeftTop">
                 <!-- <select name="" id="sections" class="complaintsInput"> -->
                 <!-- <option value="301">301</option>
-                  <option value="275">275</option> -->
+                    <option value="275">275</option> -->
                 <textarea name="" id="" cols="30" rows="5"></textarea>
               </div>
             </div>
           </div>
           <!-- <div class="filesDiv">
-            <p>Upload Files</p>
-            <div class="specialDivInner">
-              <div class="complaintContnetDivLeftTop">
-                <input
-                  type="file"
-                  name=""
-                  id="inputFiles"
-                  placeholder="Special Remark"
-                  class="complaintsInput"
-                  multiple
-                />
-                <div id="inputFilesText"></div>
+              <p>Upload Files</p>
+              <div class="specialDivInner">
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="file"
+                    name=""
+                    id="inputFiles"
+                    placeholder="Special Remark"
+                    class="complaintsInput"
+                    multiple
+                  />
+                  <div id="inputFilesText"></div>
+                </div>
               </div>
-            </div>
-            
-          </div> -->
+              
+            </div> -->
 
           <div class="addButtonDiv">
             <button
               id="updateButton"
               type="submit"
+              onclick="updateComplain()"
               class="addButton my-5 p-3 border-2 border-green-400 hover:border-green-600 hover:bg-green-600 transition-all rounded font-bold hover:text-white"
             >
               Update
@@ -1076,18 +962,18 @@
               </div>
             </div>
             <!-- <div class="m-5 flex-1">
-              <label class="complaintsFormLabel">Target deadline</label>
-              <div class="complaintContnetDivLeftTop">
-                <input
-                  type="date"
-                  name=""
-                  id="emailInput"
-                  placeholder="="
-                  class="complaintsInput"
-                  readonly
-                />
-              </div>
-            </div> -->
+                <label class="complaintsFormLabel">Target deadline</label>
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="date"
+                    name=""
+                    id="emailInput"
+                    placeholder="="
+                    class="complaintsInput"
+                    readonly
+                  />
+                </div>
+              </div> -->
             <div class="highPriorityCheckDiv">
               <div class="complaintContnetDivLeftTop">
                 <input
@@ -1118,12 +1004,12 @@
               <label class="complaintsFormLabel" for="sections">ACT :</label>
               <!-- <div class="sectionsDisplay"> -->
               <!-- <textarea
-                  name=""
-                  id=""
-                  cols="30"
-                  rows="10"
-                  placeholder="Write ACT"
-                ></textarea> -->
+                    name=""
+                    id=""
+                    cols="30"
+                    rows="10"
+                    placeholder="Write ACT"
+                  ></textarea> -->
               <select
                 name=""
                 id="actView"
@@ -1136,56 +1022,56 @@
               <div class="complaintContnetDivLeftTop">
                 <!-- <select name="" id="sections" class="complaintsInput"> -->
                 <!-- <option value="301">301</option>
-                  <option value="275">275</option> -->
+                    <option value="275">275</option> -->
                 <textarea name="" id="" cols="30" rows="5" disabled></textarea>
               </div>
             </div>
           </div>
           <!-- <div class="filesDiv">
-            <p>Upload Files</p>
-            <div class="specialDiv">
-              <div class="specialDivInner">
-                <label class="complaintsFormLabel">From Internet</label>
-                <input type="radio" readonly />
-                <div class="complaintContnetDivLeftTop">
-                  <input
-                    type="file"
-                    name=""
-                    id="emailInput"
-                    placeholder="Special Remark"
-                    class="complaintsInput"
-                    readonly
-                  />
+              <p>Upload Files</p>
+              <div class="specialDiv">
+                <div class="specialDivInner">
+                  <label class="complaintsFormLabel">From Internet</label>
+                  <input type="radio" readonly />
+                  <div class="complaintContnetDivLeftTop">
+                    <input
+                      type="file"
+                      name=""
+                      id="emailInput"
+                      placeholder="Special Remark"
+                      class="complaintsInput"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="specialDivInner">
+                  <label class="complaintsFormLabel" for="computer"
+                    >From My Computer</label
+                  >
+                  <input type="radio" name="computer" id="" readonly />
+                  <div class="complaintContnetDivLeftTop">
+                    <input
+                      type="file"
+                      name=""
+                      id="emailInput"
+                      placeholder="Write Complaint Here"
+                      class="complaintsInput"
+                      readonly
+                    />
+                  </div>
                 </div>
               </div>
-              <div class="specialDivInner">
-                <label class="complaintsFormLabel" for="computer"
-                  >From My Computer</label
-                >
-                <input type="radio" name="computer" id="" readonly />
-                <div class="complaintContnetDivLeftTop">
-                  <input
-                    type="file"
-                    name=""
-                    id="emailInput"
-                    placeholder="Write Complaint Here"
-                    class="complaintsInput"
-                    readonly
-                  />
-                </div>
-              </div>
-            </div>
-          </div> -->
+            </div> -->
 
           <!-- <div class="addButtonDiv">
-            <button
-              onclick="updateComplain()"
-              type="submit"
-              class="addButton my-5 p-3 border-2 border-green-400 hover:border-green-600 hover:bg-green-600 transition-all rounded font-bold hover:text-white"
-            >
-              Update
-            </button>
-          </div> -->
+              <button
+                onclick="updateComplain()"
+                type="submit"
+                class="addButton my-5 p-3 border-2 border-green-400 hover:border-green-600 hover:bg-green-600 transition-all rounded font-bold hover:text-white"
+              >
+                Update
+              </button>
+            </div> -->
         </div>
       </div>
     </div>
@@ -1220,22 +1106,43 @@
         <div class="showComments"></div>
       </div>
     </div>
+    <div class="commentDiv">
+        <div>
+          <div class="upperDivAddComp">
+            <h3 class="h3AddComp">Add Comments</h3>
+            <div class="closeIconComment">
+              <div class="line1"></div>
+              <div class="line2"></div>
+            </div>
+          </div>
+        </div>
+        <div class="commentMainDiv">
+          <div>
+            <form id="commentForm" onsubmit="addComm(event)">
+              <div class="innerTextDiv">
+                <textarea
+                  name=""
+                  id="commentText"
+                  placeholder="Write Comment"
+                ></textarea>
+                <input
+                  type="submit"
+                  value="Post Comment"
+                  id="addComment"
+                  class="buttonAddComment"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="showComments"></div>
+        </div>
+      </div>
   </body>
 </html>
-<script src="./dashboard.js"></script>
+
+<script src="./pending.js"></script>
 <script src="./commonFunctions.js"></script>
 <script type="module">
-  //   import {getUser} from "./Components/getData.js"
-  // let data =[]
-  //
-  //   let a = async ()=>{
-  //     let b = await getUser(data)
-  //     console.log(b)
-  //     userName.innerText=`${b.fname}`
-  //   }
-  //   // console.log(a)
-  //   a()
-  //   // getComplain()
   import {
     a,
     complain,
@@ -1257,8 +1164,7 @@
     priority,
     pending,
     disposed,
-  } from "./Components/GetData.js";
-  let user = {};
+  } from "./Components/getData.js";
   let userName = document.getElementById("userDetail");
   let allcomp = document.getElementById("allcomp");
   let pendingComp = document.getElementById("pendingcomp");
@@ -1266,7 +1172,6 @@
   let priorityComp = document.getElementById("prioritycomp");
   let disposedComp = document.getElementById("disposedComp");
   let visitorcomp = document.getElementById("visitorcomp");
-
   async function app() {
     await a();
     userName.innerText = `${currentUser.fname} ${currentUser.lname}, ${currentUser.designation}, ${currentUser.districtofc}`;
@@ -1276,21 +1181,21 @@
     priorityComp.innerText = `(${priority.length})`;
     disposedComp.innerText = `(${disposed.length})`;
     visitorcomp.innerText = `(${visitorComplain.length})`;
-    complainData = complain;
+
+    pendingC = disposed;
+    append(disposed);
     user = currentUser;
-    append(complain);
-    appendrangeInputUpdate(Ranges, currentRange);
-    appendrangeInputView1(Ranges, currentRange);
+    appendrangeInputUpdate(Ranges);
+    appendrangeInputView1(Ranges);
     appendStationName(policeStations);
     appendStationNameView(policeStations);
-    appendOfficerInfo(SHO);
-    appendImageIOInfo(SHO);
-    appendDistrictUpdate(districts, currentDistrict);
-    appendDistrictView(districts, currentDistrict);
+    appendIo(policeStations);
     appendcomplainCategoryUpdate(category);
     appendcomplainCategoryView(category);
     appendAct(act);
     appendActView(act);
+    appendDistrictUpdate(districts, currentDistrict);
+    appendDistrictView(districts, currentDistrict);
   }
   let appendcomplainCategoryUpdate = (data) => {
     let complainCategoryUpdate = document.getElementById(
@@ -1314,7 +1219,6 @@
       actUpdate.append(option);
     });
   };
-
   const appendDistrictUpdate = (data, a) => {
     let container = document.getElementById("districtUpdate");
     data.map((el) => {
@@ -1357,99 +1261,61 @@
     });
     container.value = a;
   };
-  const appendOfficerInfo = (data) => {
-    // <div class="officerInformationSingleDiv">
-    //   <h4>Officer Information</h4>
-    //   <div class="officerInformationText">
-    //     <p>By Mahesh Singh, IO, Sadar, Karnal</p>
-    //     <div class="officerInformationIcons">
-    //       <i class="fa-regular fa-pen-to-square"></i>
-    //       <i class="fa-solid fa-trash-can"></i>
-    //     </div>
-    //   </div>
-    // </div>;
 
-    console.log(data);
-    let cont = document.getElementById("officerIngormation");
-    cont.innerHTML = null;
-    data.map((el) => {
-      let div = document.createElement("div");
-      div.setAttribute("class", "officerInformationSingleDiv");
-      let h4 = document.createElement("h4");
-      h4.innerText = "Officer Information";
-      let divInner = document.createElement("div");
-      divInner.setAttribute("class", "officerInformationText");
-      let p = document.createElement("p");
-      p.innerText = `By ${el.fname} ${el.lname}, ${el.designation} ${el.policestation}`;
+  // async function b() {
+  //   let resultComplain = await getComplain();
+  //   const resRange = await getRange();
+  //   const resIO = await getIO();
+  //   resultComplain = resultComplain.filter((el) => {
+  //     return el.Status === "PENDING";
+  //   });
+  //   append(resultComplain);
+  //   appendrangeInputUpdate(resRange);
+  //   appendrangeInputView1(resRange);
+  //   appendIOUpdate(resIO);
+  //   appendIONameView1(resIO);
+  //   appendIo(resIO);
 
-      divInner.append(p);
-      div.append(h4, divInner);
-      cont.append(div);
-    });
-  };
-
-  let appendImageIOInfo = (data) => {
-    let cont = document.getElementById("officersData");
-
-    // <div class="OfficerDataSingleDiv">
-    //           <div class="officerImage">
-    //             <img src="./haryana_police_logo.webp" alt="" />
-    //           </div>
-    //           <div class="officersDetails">
-    //             <p>Abhishekh Kumar, IO, Hisar, Nagar</p>
-    //             <div class="progressSlider">Slider</div>
-    //           </div>
-    //         </div>
-
-    data.map((el) => {
-      let div = document.createElement("div");
-      div.setAttribute("class", "OfficerDataSingleDiv");
-      let divImg = document.createElement("div");
-      divImg.setAttribute("class", "officerImage");
-      let img = document.createElement("img");
-      img.src = "./haryana_police_logo.webp";
-      let divText = document.createElement("div");
-      divText.setAttribute("class", "officersDetails");
-      let p = document.createElement("p");
-      p.innerText = `${el.fname} ${el.lname}, ${el.designation} ${el.policestation}`;
-
-      divImg.append(img);
-      divText.append(p);
-      div.append(divImg, divText);
-      cont.append(div);
-    });
-  };
-
-  let convertDate = (id) => {
-    let myDate = new Date(id);
-    return myDate.toLocaleDateString();
-  };
-
-  const appendrangeInputUpdate = (data, a) => {
-    let container = document.getElementById("rangeInputUpdate");
+  //   // console.log(resultComplain);
+  // }
+  const appendrangeInputUpdate = (data) => {
+    let rangeInputUpdate = document.getElementById("rangeInputUpdate");
+    rangeInputUpdate.innerHTML = null;
     data.map((el) => {
       let option = document.createElement("option");
       option.innerText = el.rangeName;
       option.value = el.rangeName;
-      // console.log(option)
-      container.append(option);
-      // UpdateCont.append(option)
+      rangeInputUpdate.append(option);
     });
-    container.value = a;
   };
   const appendStationName = (data) => {
-    let StationName = document.getElementById("StationName");
-    StationName.innerHTML = null;
+    let IOUpdate = document.getElementById("StationName");
+    // let IONameView1 = document.getElementById("IONameView1");
+    IOUpdate.innerHTML = null;
     data.map((el) => {
       let option = document.createElement("option");
       option.innerText = `${el.policeStationName}`;
       option.value = el.policeStationName;
-      StationName.append(option);
+      IOUpdate.append(option);
+      // IONameView1.append(option)
+    });
+  };
+  const appendIo = (data) => {
+    let container = document.getElementById("ioselect");
+    let updateCont = document.getElementById("");
+
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = `${el.fname} ${el.lname}`;
+      option.value = el.email;
+      // console.log(option)
+      container.append(option);
+      // updateCont.append(option)
     });
   };
   // view
 
-  const appendrangeInputView1 = (data, a) => {
+  const appendrangeInputView1 = (data) => {
     // console.log(data);
     let rangeInputView1 = document.getElementById("rangeInputView1");
     data.map((el) => {
@@ -1458,15 +1324,17 @@
       option.value = el.rangeName;
       rangeInputView1.append(option);
     });
-    rangeInputView1.value = a;
   };
   const appendStationNameView = (data) => {
-    let StationNameView = document.getElementById("StationNameView");
+    let IOUpdate = document.getElementById("StationNameView");
+    // let IONameView1 = document.getElementById("IONameView1");
+    IOUpdate.innerHTML = null;
     data.map((el) => {
       let option = document.createElement("option");
       option.innerText = `${el.policeStationName}`;
       option.value = el.policeStationName;
-      StationNameView.append(option);
+      IOUpdate.append(option);
+      // IONameView1.append(option)
     });
   };
   app();

@@ -24,8 +24,8 @@
             <i class="fa-solid fa-bars"></i>
           </div>
           <div class="inputHeader">
-            <input type="text" placeholder="search" />
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="search" id="searchBox" />
+            <i class="fa-solid fa-magnifying-glass" onclick="search()"></i>
           </div>
         </div>
         <div class="userDetails">
@@ -53,54 +53,59 @@
           <ul>
             <li class="liText">
               <a class="aTag" href="./allComplaints.html">
-                <i class="fa-solid fa-book-open"></i> All Complaints</a
-              >
+                <i class="fa-solid fa-book-open"></i> All Complaints
+                <span id="allcomp"></span
+              ></a>
             </li>
             <li class="liText">
               <a class="aTag" href="./todayComplain.html"
-                ><i class="fa-solid fa-calendar-day"></i> Today Complaints</a
-              >
+                ><i class="fa-solid fa-calendar-day"></i> Today Complaints
+                <span id="todaycomp"></span
+              ></a>
             </li>
             <li class="liText">
               <a class="aTag" href="./highPriority.html"
-                ><i class="fa-solid fa-fire"></i>High Priority</a
-              >
+                ><i class="fa-solid fa-fire"></i>High Priority
+                <span id="prioritycomp"></span
+              ></a>
             </li>
             <li class="liText">
-              <a class="aTag" href="#">
-                <i class="fa-sharp fa-regular fa-clock"></i> Pending
-                Complaints</a
-              >
+              <a class="aTag" href="./pending.html">
+                <i class="fa-sharp fa-regular fa-clock"></i> Pending Complaints
+                <span id="pendingcomp"></span
+              ></a>
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-circle-check"></i>Closed Complaints</a
-              >
+              <a class="aTag" href="./Disposed.html"
+                ><i class="fa-solid fa-circle-check"></i>Disposed Complaints
+                <span id="disposedComp"></span
+              ></a>
             </li>
             <li class="liText">
               <a class="aTag" href="./Visitor.html"
-                ><i class="fa-solid fa-eye"></i>View Visitor Complain</a
-              >
+                ><i class="fa-solid fa-eye"></i>View Visitor Complain
+                <span id="visitorcomp"></span
+              ></a>
             </li>
           </ul>
           <p>Manage Officers</p>
           <ul>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#">
                 <i class="fa-solid fa-user"></i> View SHO
               </a>
-            </li>
+            </li> -->
             <li class="liText">
               <a class="aTag" href="./SHOReport.html"
                 ><i class="fa-solid fa-square-poll-horizontal"></i>SHO
                 Reports</a
               >
             </li>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#"
                 ><i class="fa-regular fa-paper-plane"></i>Send Notes</a
               >
-            </li>
+            </li> -->
             <!-- <li class="liText">
                   <a class="aTag" href="#">Add/View/Update SP</a>
                 </li>
@@ -119,7 +124,7 @@
                   <a class="aTag" href="#">Add/View/Update ACT</a>
                 </li>
               </ul> -->
-          <p>Manage Reports</p>
+          <!-- <p>Manage Reports</p>
           <ul>
             <li class="liText">
               <a class="aTag" href="./pending.html"
@@ -129,7 +134,8 @@
             </li>
             <li class="liText">
               <a class="aTag" href="#"
-                ><i class="fa-solid fa-file-circle-check"></i>Closed Reports</a
+                ><i class="fa-solid fa-file-circle-check"></i>DISPOSED
+                Reports</a
               >
             </li>
             <li class="liText">
@@ -148,7 +154,7 @@
                 ><i class="fa-solid fa-file-pdf"></i>View all Reports</a
               >
             </li>
-          </ul>
+          </ul> -->
           <div id="buttonDiv">
             <button id="logoutButton" onclick="logout()">
               <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
@@ -169,31 +175,6 @@
               >NEW COMPLAINT</span
             >
           </span>
-          <!-- <span>
-            <select name="" id="">
-              <option value="">Select District</option>
-              <option value="hisar">Hisar</option>
-              <option value="karnal">Karnal</option>
-            </select>
-          </span> -->
-          <!-- <span class="complaintsNumber">
-            <span>
-              <span>Today Complaints: </span>
-              <span class="complaintsNewComplaints">2500</span>
-            </span>
-            <span>
-              <span>Today Complaints: </span>
-              <span class="complaintsNewComplaints">2500</span>
-            </span>
-            <span>
-              <span>Today Complaints: </span>
-              <span class="complaintsNewComplaints">2500</span>
-            </span>
-            <span>
-              <span>Today Complaints: </span>
-              <span class="complaintsNewComplaints">2500</span>
-            </span>
-          </span> -->
         </div>
         <div>
           <div class="divComplaints">
@@ -316,7 +297,12 @@
               <div class="">
                 <label class="complaintsFormLabel">District :</label>
                 <div class="complaintContnetDivLeftTop">
-                  <select name="" id="districtInput" class="complaintsInput">
+                  <select
+                    name=""
+                    id="districtInput"
+                    class="complaintsInput"
+                    disabled
+                  >
                     <option value="">Select District</option>
                   </select>
                   <!-- <input
@@ -331,7 +317,12 @@
               <div class="">
                 <label class="complaintsFormLabel">State :</label>
                 <div class="complaintContnetDivLeftTop">
-                  <select name="State" id="stateInput" class="complaintsInput">
+                  <select
+                    name="State"
+                    id="stateInput"
+                    class="complaintsInput"
+                    disabled
+                  >
                     <option value="HARYANA">HARYANA</option>
                   </select>
                   <!-- <input
@@ -349,7 +340,12 @@
               <div class="">
                 <label class="complaintsFormLabel">Range :</label>
                 <div class="complaintContnetDivLeftTop">
-                  <select name="" id="rangeInput" class="complaintsInput">
+                  <select
+                    name=""
+                    id="rangeInput"
+                    class="complaintsInput"
+                    disabled
+                  >
                     <option value="">Select Range</option>
                   </select>
                 </div>
@@ -358,7 +354,7 @@
                 <label class="complaintsFormLabel">Mark to Station :</label>
                 <div class="complaintContnetDivLeftTop">
                   <select name="" id="SHOName" class="complaintsInput">
-                    <option value="">Select SHO</option>
+                    <option value="">Select Station</option>
                   </select>
                 </div>
               </div>
@@ -369,7 +365,7 @@
                   <select name="" id="complainStatus" class="complaintsInput">
                     <option value="PENDING">PENDING</option>
                     <option value="IN-PROCESS">IN-PROCESS</option>
-                    <option value="CLOSED">CLOSED</option>
+                    <option value="DISPOSED">DISPOSED</option>
                     <option value="OVERDUE">OVERDUE</option>
                     <option value="REJECTED">REJECTED</option>
                   </select>
@@ -379,14 +375,14 @@
             <div class="complaintsText">
               <div class="">
                 <label class="complaintsFormLabel"
-                  >Complaint SPrt Description</label
+                  >Complaint Short Description</label
                 >
                 <div class="complaintsTextArea">
                   <textarea
                     type="text"
                     name=""
                     id="shortDescription"
-                    placeholder="Complaint SPrt Description"
+                    placeholder="Complaint Short Description"
                     class="p-2 mr-2 border-2 rounded w-full h-44"
                   ></textarea>
                 </div>
@@ -402,22 +398,11 @@
                     id="dateOfSub"
                     placeholder=""
                     class="complaintsInput"
+                    required
                   />
                 </div>
               </div>
-              <div class="m-5 flex-1">
-                <label class="complaintsFormLabel">Target deadline</label>
-                <div class="complaintContnetDivLeftTop">
-                  <input
-                    type="date"
-                    name=""
-                    id="emailInput"
-                    placeholder="="
-                    class="complaintsInput"
-                    readonly
-                  />
-                </div>
-              </div>
+
               <div class="highPriorityCheckDiv">
                 <div class="complaintContnetDivLeftTop">
                   <input
@@ -435,24 +420,22 @@
               <div>
                 <label class="complaintsFormLabel">Complaints Category :</label>
                 <div class="complaintContnetDivLeftTop">
-                  <select name="" id="complainCategory" class="complaintsInput">
-                    <option value="CAW">CAW Complaints</option>
-                  </select>
+                  <select
+                    name=""
+                    id="complainCategory"
+                    class="complaintsInput"
+                  ></select>
                 </div>
               </div>
               <div>
-                <label class="complaintsFormLabel" for="sections"
-                  >Sections :</label
-                >
-                <div class="sectionsDisplay"></div>
+                <label class="complaintsFormLabel" for="sections">ACT :</label>
+
+                <select name="" id="act" class="complaintsInput"></select>
               </div>
               <div>
                 <label class="complaintsFormLabel">Sections :</label>
                 <div class="complaintContnetDivLeftTop">
-                  <select name="" id="sections" class="complaintsInput">
-                    <option value="301">301</option>
-                    <option value="275">275</option>
-                  </select>
+                  <textarea name="" id="" cols="30" rows="5"></textarea>
                 </div>
               </div>
             </div>
@@ -474,13 +457,25 @@
                   <div id="inputFilesText"></div>
                 </div>
               </div>
-
+              <!-- <div class="specialDivInner">
+                  <label class="complaintsFormLabel" for="computer"
+                    >From My Computer</label
+                  >
+                  <input type="radio" name="computer" id="" />
+                  <div class="complaintContnetDivLeftTop">
+                    <input
+                      type="file"
+                      name=""
+                      id="emailInput"
+                      placeholder="Write Complaint Here"
+                      class="complaintsInput"
+                    />
+                  </div>
+                </div>
+              </div> -->
+            </div>
             <div class="addButtonDiv">
-              <button
-                onclick="addComplain()"
-                type="submit"
-                class="addButton my-5 p-3 border-2 border-green-400 hover:border-green-600 hover:bg-green-600 transition-all rounded font-bold hover:text-white"
-              >
+              <button onclick="addComplain()" type="submit" class="addButton">
                 Add
               </button>
             </div>
@@ -490,29 +485,108 @@
     </div>
   </body>
 </html>
-<script src="./ranges.js"></script>
+<!-- <script src="./ranges.js"></script> -->
 <script src="./commonFunctions.js"></script>
 <script src="./addComplain.js"></script>
 <script type="module">
-  import { getUser, getSHO, getStation } from "./Components/getData.js";
+  import {
+    a,
+    complain,
+    currentUser,
+    visitorComplain,
+    IO,
+    Ranges,
+    category,
+    currentRange,
+    currentDistrict,
+    currentPoliceStation,
+    districts,
+    act,
+    SP,
+    DSP,
+    SHO,
+    policeStations,
+    today,
+    priority,
+    pending,
+    disposed,
+  } from "./Components/getData.js";
   let userName = document.getElementById("userDetail");
-  async function a() {
-    const result = await getUser();
-    let resStation = await getStation();
-    // console.log(resStation)
-    resStation = resStation.filter((el) => {
-      // console.log(el);
-      return result.districtofc === el.policeStationDistrict;
-    });
-    appendStation(resStation);
-    console.log(resStation);
-    userName.innerText = `${result.fname} ${result.lname}, ${result.designation}, ${result.districtofc}`;
+  let allcomp = document.getElementById("allcomp");
+  let pendingComp = document.getElementById("pendingcomp");
+  let todayComp = document.getElementById("todaycomp");
+  let priorityComp = document.getElementById("prioritycomp");
+  let disposedComp = document.getElementById("disposedComp");
+  let visitorcomp = document.getElementById("visitorcomp");
+  async function app() {
+    // const result = await getUser();
+    // let resStation = await getStation();
+    // // console.log(resStation)
+    // resStation = resStation.filter((el) => {
+    //   // console.log(el);
+    //   return result.districtofc === el.policeStationDistrict;
+    // });
+    await a();
+    userName.innerText = `${currentUser.fname} ${currentUser.lname}, ${currentUser.designation}, ${currentUser.districtofc}`;
+    allcomp.innerText = `(${complain.length})`;
+    pendingComp.innerText = `(${pending.length})`;
+    todayComp.innerText = `(${today.length})`;
+    priorityComp.innerText = `(${priority.length})`;
+    disposedComp.innerText = `(${disposed.length})`;
+    visitorcomp.innerText = `(${visitorComplain.length})`;
+    user = currentUser;
+    appendStation(policeStations);
+    appendrangeInput(Ranges, currentRange);
+    appenddistrictInput(districts, currentDistrict);
+    appendcomplainCategory(category);
+    appendAct(act);
   }
+  const appendrangeInput = (data, a) => {
+    let container = document.getElementById("rangeInput");
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.rangeName;
+      option.value = el.rangeName;
+      // console.log(option)
+      container.append(option);
+      // UpdateCont.append(option)
+    });
+    container.value = a;
+  };
+  let appendcomplainCategory = (data) => {
+    let complainCategory = document.getElementById("complainCategory");
+    console.log(data);
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.categoryName;
+      option.value = el.categoryName;
+      complainCategory.append(option);
+    });
+  };
+  let appendAct = (data) => {
+    let act = document.getElementById("act");
+    console.log(data);
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.actName;
+      option.value = el.actName;
+      act.append(option);
+    });
+  };
+  const appenddistrictInput = (data, a) => {
+    let container = document.getElementById("districtInput");
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.rangeDistrictName;
+      option.value = el.rangeDistrictName;
+      container.append(option);
+    });
+    container.value = a;
+  };
   const appendStation = (data) => {
     let SHOName = document.getElementById("SHOName");
-    SHOName.innerHTML = null;
     data.map((el) => {
-      console.log(el)
+      console.log(el);
       let option = document.createElement("option");
       option.innerText = `${el.policeStationName}`;
       option.value = el.policeStationName;
@@ -520,5 +594,5 @@
       // IONameView1.append(option)
     });
   };
-  a();
+  app();
 </script>

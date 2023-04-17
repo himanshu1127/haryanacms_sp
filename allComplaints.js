@@ -1,5 +1,5 @@
 let dataArr = [];
-let currentUser = {};
+let user = {};
 const changeComplains = () => {
   const value = document.getElementById("ioselect").value;
   console.log(dataArr);
@@ -22,15 +22,8 @@ const changeComplains = () => {
 //   console.log(newData);
 //   append(newData);
 // };
-// console.log(currentUser)
-const dataPoliceStation = (data) => {
-  let newData = data.filter((el) => {
-    console.log(currentUser);
-    return el.rangeDistrictName === currentUser.districtofc;
-  });
-  dataArr = newData;
-  append(newData);
-};
+// console.log(user)
+
 // const getComp = async () => {
 //   const url = `https://hrycms.onrender.com/complain/allcomplain`;
 //   let res = await fetch(url);
@@ -46,10 +39,6 @@ let get = (id) => {
   return document.getElementById(id);
 };
 let container = document.querySelector(".tableBody");
-let convertDate = (id) => {
-  let myDate = new Date(id);
-  return myDate.toLocaleDateString();
-};
 
 const appendIo = (data) => {
   let container = document.getElementById("ioselect");
@@ -88,11 +77,11 @@ const append = (data) => {
     let td4 = document.createElement("td");
     td4.setAttribute("class", "tablecol");
     td4.setAttribute("class", "tablecol4");
-    td4.innerText = convertDate(el.createdAt);
+    td4.innerText = el.complainDate;
     let td5 = document.createElement("td");
     td5.setAttribute("class", "tablecol");
     td5.setAttribute("class", "tablecol5");
-    td5.innerText = el.deadline;
+    td5.innerText = el.targetDate;
     let td6 = document.createElement("td");
     td6.setAttribute("class", "tablecol");
     td6.setAttribute("class", "tablecol6");
@@ -180,7 +169,7 @@ const append = (data) => {
       divtd10.style.alignSelf = "center";
       divtd10.style.height = "40px";
       divtd10.style.color = "white";
-    } else if (el.Status === "CLOSED") {
+    } else if (el.Status === "DISPOSED") {
       divtd10.style.border = "1px solid blue";
       divtd10.style.backgroundColor = "blue";
       divtd10.style.boxSizing = "border-box";
@@ -231,7 +220,9 @@ const append = (data) => {
     commentsIcon.innerHTML = '<i class="fa-solid fa-comment"></i>';
     commentsIcon.style.width = "40%";
     // commentsIcon.style.margin="5px"
-
+    commentsIcon.addEventListener("click", () => {
+      complainComment(el);
+    });
     // td8.innerText = "hi";
     // updateIcon.innerHTML('<i class="fa-light fa-pen"></i>')
 
@@ -254,7 +245,7 @@ const searchData = () => {
   console.log(dataArr);
   let newData = dataArr.filter((el, index) => {
     // console.log(el.IssuedDate, "  ",initial)
-    if (el.IssuedDate >= initial && el.IssuedDate <= final) {
+    if (el.createdAt >= initial && el.createdAt <= final) {
       // console.log(el)
 
       return el;
@@ -264,10 +255,17 @@ const searchData = () => {
   append(newData);
   // console.log(obj);
 };
+let updateComp = document.querySelector(".closeIconUpdate");
+updateComp.onclick = function () {
+  let compUpdate = document.querySelector(".displayUpdateComp");
+  compUpdate.classList.toggle("activeUpdateComp");
+};
 const updateData = async (el) => {
+  let deadline = new Date(el.targetDate);
+  deadline = deadline.toISOString().substring(0, 10);
   let displayUpdateComp = document.querySelector(".displayUpdateComp");
   displayUpdateComp.classList.toggle("activeUpdateComp");
-  console.log(currentUser);
+  console.log(user);
   console.log(el);
   localEl = el;
   get("complainantNameUpdate").value = el.ComplainantName;
@@ -279,22 +277,18 @@ const updateData = async (el) => {
   get("alternateNumberUpdate").value = el.alternateNumber;
   get("cityInputUpdate").value = el.City;
   get("rangeInputUpdate").value = el.policerange;
-  get("IOUpdate").value = el.policestation;
+  get("StationName").value = el.policestation;
   get("complainStatusUpdate").value = el.Status;
   get("SPrtDescriptionUpdate").value = el.ComplaintSPrtDescription;
   get("complainCategoryUpdate").value = el.ComplaintCategory;
   get("highPriorityUpdate").checked = el.highPriority;
   get("complainantNumber").value = el.trackingId;
-  // get("sectionsUpdate").value=el.
-  // get("highPriorityUpdate").value=el.
+  get("highPriorityUpdate").value = el.highPriority;
+  get("deadlineUpdate").value = deadline;
 
   return localEl;
 };
-let updateComp = document.querySelector(".closeIconUpdate");
-updateComp.onclick = function () {
-  let compUpdate = document.querySelector(".displayUpdateComp");
-  compUpdate.classList.toggle("activeUpdateComp");
-};
+
 const updateComplain = async () => {
   // alert("Update");
   // let compUpdate = document.querySelector(".displayUpdateComp");
@@ -305,11 +299,9 @@ const updateComplain = async () => {
     Email: document.getElementById("complainantEmailUpdate").value,
     author_id: userID,
     policerange: document.getElementById("rangeInputUpdate").value,
-    // rangeDistrictName: document.getElementById("rangeInputUpdate").value,
+    rangeDistrictName: document.getElementById("districtUpdate").value,
     // policestation: "",
     phoneNumber: "",
-    createdAt: "",
-    updatedAt: "",
     ComplainantPhoneNumber: document.getElementById("mobileNoUpdate").value,
     alternateNumber: document.getElementById("alternateNumberUpdate").value,
     FatherName: document.getElementById("fatherNameUpdate").value,
@@ -323,7 +315,7 @@ const updateComplain = async () => {
     SectionsofComplaint: "",
     Range: document.getElementById("rangeInputUpdate").value,
     Status: document.getElementById("complainStatusUpdate").value,
-    policestation: document.getElementById("IOUpdate").value,
+    policestation: document.getElementById("StationName").value,
     highPriority: get("highPriorityUpdate").checked,
   };
   obj = JSON.stringify(obj);
@@ -343,14 +335,21 @@ const updateComplain = async () => {
     res = await res.json();
     console.log(res);
     alert("Update");
-    // window.location.reload();
+    window.location.reload();
     let compUpdate = document.querySelector(".displayUpdateComp");
     compUpdate.classList.toggle("activeUpdateComp");
   } catch (err) {
     alert(err);
   }
 };
-
+const search = () => {
+  let query = document.getElementById("searchBox").value;
+  let newData = dataArr.filter((el) => {
+    return el.ComplainantName.includes(query);
+  });
+  // console.log(newData);
+  append(newData);
+};
 let displayViewComp = document.querySelector(".displayViewComp");
 let closeIconView = document.querySelector(".closeIconView");
 closeIconView.addEventListener("click", () => {
@@ -358,6 +357,8 @@ closeIconView.addEventListener("click", () => {
 });
 const viewData = (el) => {
   console.log(el);
+  let deadline = new Date(el.targetDate);
+  deadline = deadline.toISOString().substring(0, 10);
   let displayViewComp = document.querySelector(".displayViewComp");
   displayViewComp.classList.toggle("activeviewComp");
   get("complainantNameView").value = el.ComplainantName;
@@ -369,11 +370,88 @@ const viewData = (el) => {
   get("alternateNumberView").value = el.alternateNumber;
   get("cityInputView").value = el.City;
   get("rangeInputView1").value = el.Range;
-  get("IONameView1").value = el.policestation;
+  get("StationNameView").value = el.policestation;
   get("complainStatusView").value = el.Status;
   get("SPrtDescriptionView").value = el.ComplaintSPrtDescription;
   get("complainCategoryView").value = el.ComplaintCategory;
   get("complainantNumberView").value = el.trackingId;
   get("highPriorityView").checked = el.highPriority;
+  get("deadlineView").value = deadline;
   // get("dateOfSubView").value = convertDate(el.createdAt);
+};
+let commentDiv = document.querySelector(".commentDiv");
+const showComp = async () => {
+  let res = await fetch(`https://haryanacms.onrender.com/comment/getcomment`);
+  res = await res.json();
+  console.log(res);
+  commentArr = res.filter((elem) => {
+    return elem.complain_id === complainID._id;
+  });
+  console.log(commentArr);
+  appendComment(commentArr);
+};
+const complainComment = async (el) => {
+  complainID = el;
+  console.log(el);
+  commentDiv.classList.toggle("activecommentDiv");
+  // console.log(user)
+  showComp();
+};
+let addComm = async (event) => {
+  event.preventDefault();
+  let obj = {
+    author_id: user._id,
+    complain_id: complainID._id,
+    authorName: `${user.fname} ${user.lname}`,
+    commentData: document.getElementById("commentText").value,
+    Designation: user.designation,
+  };
+  obj = JSON.stringify(obj);
+  console.log(obj);
+  try {
+    let res = await fetch(
+      `https://haryanacms.onrender.com/comment/addcomment`,
+      {
+        method: "POST",
+        body: obj,
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
+    res = await res.json();
+    alert("Comment Posted");
+    // commentDiv.classList.toggle("activecommentDiv");
+    showComp();
+    document.getElementById("commentText").value = "";
+    console.log(res);
+  } catch (err) {
+    alert("Not added");
+  }
+};
+
+let closeIconComment = document.querySelector(".closeIconComment");
+closeIconComment.addEventListener("click", () => {
+  commentDiv.classList.toggle("activecommentDiv");
+});
+
+let appendComment = (data) => {
+  let contan = document.querySelector(".showComments");
+  contan.innerHTML = null;
+  if (data.length > 0) {
+    data.map((el) => {
+      let div = document.createElement("div");
+      div.setAttribute("class", "commentDivView");
+      let h4 = document.createElement("h4");
+      let p = document.createElement("p");
+      h4.innerText = `Comment By : ${el.authorName}`;
+      h4.setAttribute("class", "commentUserView");
+      p.innerText = el.commentData;
+      p.setAttribute("class", "commentTextView");
+      div.append(h4, p);
+      contan.append(div);
+    });
+  } else {
+    contan.innerHTML = "<h3>No Comments</h3>";
+  }
 };

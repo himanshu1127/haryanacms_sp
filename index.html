@@ -74,7 +74,6 @@
     }else{
       alert("Not an SP")
     }
-    // console.log(data);
   };
   const get = (id) => {
     return document.getElementById(id);
@@ -88,7 +87,7 @@
     obj = JSON.stringify(obj);
     try {
       loading = true;
-      console.log(loading);
+      // console.log(loading);
       appendButtonText();
       let res = await fetch(`${url}/user/login`, {
         method: "POST",
