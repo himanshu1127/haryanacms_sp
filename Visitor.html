@@ -192,7 +192,11 @@
             <i class="fa-solid fa-bars"></i>
           </div>
           <div class="inputHeader">
-            <input type="text" placeholder="search" id="searchBox" />
+            <input
+              type="text"
+              placeholder="Search By Complainant Name"
+              id="searchBox"
+            />
             <i class="fa-solid fa-magnifying-glass" onclick="search()"></i>
           </div>
         </div>
@@ -368,7 +372,7 @@
                 <tr class="trHead">
                   <th class="thHead thHead1">Tracking Id</th>
                   <!-- <th class="thHead thHead2">Category</th> -->
-                  <th class="thHead thHead3">Complaint Name</th>
+                  <th class="thHead thHead3">Complainant Name</th>
                   <th class="thHead thHead9">FIR Number</th>
                   <th class="thHead thHead4">Phone Number</th>
                   <th class="thHead thHead5">Problem</th>
@@ -536,7 +540,7 @@
 </html>
 <script src="./commonFunctions.js"></script>
 <script>
-  let currUsr ={}
+  let currUsr = {};
   let visitorComplaintData = [];
   let get = (id) => {
     return document.getElementById(id);
@@ -805,11 +809,20 @@
         div.setAttribute("class", "commentDivView");
         let h4 = document.createElement("h4");
         let p = document.createElement("p");
-        h4.innerText = `Comment By : ${el.authorName}`;
+        console.log(el);
+        let h41 = document.createElement("h4");
+        let span = document.createElement("span");
+        span.innerText = "Comment By";
+        if (el.Designation === "ADGP") {
+          h4.style.color = "red";
+        }
+
+        h4.innerText = `${el.Designation} ${el.authorName}`;
+        h41.append(span, h4);
         h4.setAttribute("class", "commentUserView");
         p.innerText = el.commentData;
         p.setAttribute("class", "commentTextView");
-        div.append(h4, p);
+        div.append(h41, p);
         contan.append(div);
       });
     } else {
@@ -871,7 +884,7 @@
     visitorcomp.innerText = `(${visitorComplain.length})`;
     append(visitorComplain);
     visitorComplaintData = visitorComplain;
-    currUsr = currentUser
+    currUsr = currentUser;
   };
   // view markToCompView
   const appendSPView = (data) => {
