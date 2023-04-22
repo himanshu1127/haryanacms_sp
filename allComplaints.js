@@ -285,7 +285,6 @@ const updateData = async (el) => {
   get("complainantNumber").value = el.trackingId;
   get("highPriorityUpdate").value = el.highPriority;
   get("deadlineUpdate").value = deadline;
-
   return localEl;
 };
 
@@ -343,6 +342,7 @@ const updateComplain = async () => {
   }
 };
 const search = () => {
+  let value = document.getElementById("searchCategory").value
   let query = document.getElementById("searchBox").value;
   let newData = dataArr.filter((el) => {
     return el.ComplainantName.includes(query);
